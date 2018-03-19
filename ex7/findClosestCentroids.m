@@ -21,11 +21,13 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+for i = 1:size(X,1)
+  
+  % calc temp for storing distances from X(i) to each centroids
+  temp = (centroids - X(i,:)) .^ 2;
+  temp = sum(temp,2);
+  [~,idx(i)] = min(temp);
+end
 
 % =============================================================
 
