@@ -40,20 +40,18 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+% Errors in predictions
+Jmat = ((X*Theta' - Y) .^ 2) .* R;
+J = 1/2 * sum(sum(Jmat));
 
+% adding regularization to J
+Theta2 = Theta .^ 2;
+X2 = X .^ 2;
+J = J + lambda / 2 * ( sum(Theta2(:)) + sum(X2(:)) );
 
-
-
-
-
-
-
-
-
-
-
-
-
+% Compute each grad
+X_grad = (X * Theta' - Y) .*R * Theta + lambda * X;
+Theta_grad = ((X * Theta' - Y) .*R)' * X + lambda * Theta ;
 
 % =============================================================
 
